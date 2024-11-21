@@ -1,0 +1,334 @@
+CREATE TABLE instructor (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instructor_id VARCHAR(500) NOT NULL,
+ person_number VARCHAR(12) NOT NULL,
+ name VARCHAR(500),
+ address VARCHAR(500),
+ specific_expertise VARCHAR(500) NOT NULL
+);
+
+ALTER TABLE instructor ADD CONSTRAINT PK_instructor PRIMARY KEY (id);
+
+
+CREATE TABLE instructor_payment (
+ instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instructor_payment_id VARCHAR(500) NOT NULL,
+ payment_date VARCHAR(8) NOT NULL,
+ description VARCHAR(2000)
+);
+
+ALTER TABLE instructor_payment ADD CONSTRAINT PK_instructor_payment PRIMARY KEY (instructor_id);
+
+
+CREATE TABLE inventory (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instrument_id VARCHAR(500) NOT NULL,
+ inventory_id VARCHAR(500) NOT NULL
+);
+
+ALTER TABLE inventory ADD CONSTRAINT PK_inventory PRIMARY KEY (id);
+
+
+CREATE TABLE rental_fee (
+ rental_fee VARCHAR(500) NOT NULL,
+ inventory_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE rental_fee ADD CONSTRAINT PK_rental_fee PRIMARY KEY (rental_fee,inventory_id);
+
+
+CREATE TABLE student (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ student_id VARCHAR(500) NOT NULL,
+ person_number VARCHAR(12) NOT NULL,
+ name VARCHAR(500),
+ address VARCHAR(500),
+ sibling_group_id VARCHAR(500),
+ skill_level VARCHAR(500) NOT NULL
+);
+
+ALTER TABLE student ADD CONSTRAINT PK_student PRIMARY KEY (id);
+
+
+CREATE TABLE student_payment (
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ student_payment_id VARCHAR(500) NOT NULL,
+ payment_date VARCHAR(8) NOT NULL,
+ description VARCHAR(2000)
+);
+
+ALTER TABLE student_payment ADD CONSTRAINT PK_student_payment PRIMARY KEY (student_id);
+
+
+CREATE TABLE total_amount (
+ student_total_payment VARCHAR(500) NOT NULL,
+ instructor_total_payment VARCHAR(500) NOT NULL,
+ instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE total_amount ADD CONSTRAINT PK_total_amount PRIMARY KEY (student_total_payment,instructor_total_payment,instructor_id,student_id);
+
+
+CREATE TABLE available_times (
+ available_instructor_booking_times VARCHAR(2000) NOT NULL,
+ instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE available_times ADD CONSTRAINT PK_available_times PRIMARY KEY (available_instructor_booking_times,instructor_id);
+
+
+CREATE TABLE contact_details (
+ student_contact_details VARCHAR(500) NOT NULL,
+ instructor_contact_details VARCHAR(500) NOT NULL,
+ instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE contact_details ADD CONSTRAINT PK_contact_details PRIMARY KEY (student_contact_details,instructor_contact_details,instructor_id,student_id);
+
+
+CREATE TABLE contact_person_details (
+ contact_person_details VARCHAR(500) NOT NULL,
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE contact_person_details ADD CONSTRAINT PK_contact_person_details PRIMARY KEY (contact_person_details,student_id);
+
+
+CREATE TABLE discount_applied (
+ discount_applied VARCHAR(500) NOT NULL,
+ student_payment_student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE discount_applied ADD CONSTRAINT PK_discount_applied PRIMARY KEY (discount_applied,student_payment_student_id);
+
+
+CREATE TABLE ensembles (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ lesson_id VARCHAR(500) NOT NULL,
+ status VARCHAR(500) NOT NULL,
+ min_students VARCHAR(500) NOT NULL,
+ max_students VARCHAR(500) NOT NULL,
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE ensembles ADD CONSTRAINT PK_ensembles PRIMARY KEY (id);
+
+
+CREATE TABLE genre (
+ ensembles_genre VARCHAR(500) NOT NULL,
+ ensembles_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE genre ADD CONSTRAINT PK_genre PRIMARY KEY (ensembles_genre,ensembles_id);
+
+
+CREATE TABLE instrument (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instrument_id VARCHAR(500) NOT NULL,
+ inventory_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE instrument ADD CONSTRAINT PK_instrument PRIMARY KEY (id);
+
+
+CREATE TABLE instrument_ensembles (
+ instrument_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ ensembles_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE instrument_ensembles ADD CONSTRAINT PK_instrument_ensembles PRIMARY KEY (instrument_id,ensembles_id);
+
+
+CREATE TABLE instrument_rental (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ rental_id VARCHAR(500) NOT NULL,
+ rental_start_date VARCHAR(8) NOT NULL,
+ rental_end_date VARCHAR(8) NOT NULL,
+ inventory_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instrument_id INT GENERATED ALWAYS AS IDENTITY,
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE instrument_rental ADD CONSTRAINT PK_instrument_rental PRIMARY KEY (id);
+
+
+CREATE TABLE sibling_group (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ sibling_group_id VARCHAR(500) NOT NULL,
+ discount_percentage VARCHAR(500) NOT NULL,
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE sibling_group ADD CONSTRAINT PK_sibling_group PRIMARY KEY (id);
+
+
+CREATE TABLE stock_quantity (
+ instrument_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ inventory_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ stock_quantity VARCHAR(500) NOT NULL
+);
+
+ALTER TABLE stock_quantity ADD CONSTRAINT PK_stock_quantity PRIMARY KEY (instrument_id,inventory_id);
+
+
+CREATE TABLE student_instrument (
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE student_instrument ADD CONSTRAINT PK_student_instrument PRIMARY KEY (student_id,instructor_id);
+
+
+CREATE TABLE type (
+ instrument_type VARCHAR(500) NOT NULL,
+ instrument_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ inventory_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE type ADD CONSTRAINT PK_type PRIMARY KEY (instrument_type,instrument_id,inventory_id);
+
+
+CREATE TABLE brand (
+ instrument_brand VARCHAR(500) NOT NULL,
+ instrument_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ inventory_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE brand ADD CONSTRAINT PK_brand PRIMARY KEY (instrument_brand,instrument_id,inventory_id);
+
+
+CREATE TABLE group_lesson (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ lesson_id VARCHAR(500) NOT NULL,
+ status VARCHAR(500) NOT NULL,
+ min_students VARCHAR(500) NOT NULL,
+ max_students VARCHAR(500) NOT NULL,
+ student_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ skill_level VARCHAR(500) NOT NULL,
+ instrument_id INT GENERATED ALWAYS AS IDENTITY
+);
+
+ALTER TABLE group_lesson ADD CONSTRAINT PK_group_lesson PRIMARY KEY (id);
+
+
+CREATE TABLE individual_lesson (
+ id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ lesson_id VARCHAR(500) NOT NULL,
+ status VARCHAR(500) NOT NULL,
+ min_students VARCHAR(500) NOT NULL,
+ max_students VARCHAR(500) NOT NULL,
+ id_student INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instructor_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ instrument_id INT GENERATED ALWAYS AS IDENTITY,
+ skill_level VARCHAR(500) NOT NULL
+);
+
+ALTER TABLE individual_lesson ADD CONSTRAINT PK_individual_lesson PRIMARY KEY (id);
+
+
+CREATE TABLE instrument_group_lesson (
+ instrument_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ groupt_lesson_id INT GENERATED ALWAYS AS IDENTITY NOT NULL
+);
+
+ALTER TABLE instrument_group_lesson ADD CONSTRAINT PK_instrument_group_lesson PRIMARY KEY (instrument_id,groupt_lesson_id);
+
+
+CREATE TABLE pricing_scheme (
+ individual_lesson_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ group_lesson_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ ensembles_id INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+ skill_level VARCHAR(500) NOT NULL,
+ lesson_type VARCHAR(500) NOT NULL
+);
+
+ALTER TABLE pricing_scheme ADD CONSTRAINT PK_pricing_scheme PRIMARY KEY (individual_lesson_id,group_lesson_id,ensembles_id);
+
+
+ALTER TABLE instructor_payment ADD CONSTRAINT FK_instructor_payment_0 FOREIGN KEY (instructor_id) REFERENCES instructor (id);
+
+
+ALTER TABLE rental_fee ADD CONSTRAINT FK_rental_fee_0 FOREIGN KEY (inventory_id) REFERENCES inventory (id);
+
+
+ALTER TABLE student_payment ADD CONSTRAINT FK_student_payment_0 FOREIGN KEY (student_id) REFERENCES student (id);
+
+
+ALTER TABLE total_amount ADD CONSTRAINT FK_total_amount_0 FOREIGN KEY (instructor_id) REFERENCES instructor_payment (instructor_id);
+ALTER TABLE total_amount ADD CONSTRAINT FK_total_amount_1 FOREIGN KEY (student_id) REFERENCES student_payment (student_id);
+
+
+ALTER TABLE available_times ADD CONSTRAINT FK_available_times_0 FOREIGN KEY (instructor_id) REFERENCES instructor (id);
+
+
+ALTER TABLE contact_details ADD CONSTRAINT FK_contact_details_0 FOREIGN KEY (instructor_id) REFERENCES instructor (id);
+ALTER TABLE contact_details ADD CONSTRAINT FK_contact_details_1 FOREIGN KEY (student_id) REFERENCES student (id);
+
+
+ALTER TABLE contact_person_details ADD CONSTRAINT FK_contact_person_details_0 FOREIGN KEY (student_id) REFERENCES student (id);
+
+
+ALTER TABLE discount_applied ADD CONSTRAINT FK_discount_applied_0 FOREIGN KEY (student_payment_student_id) REFERENCES student_payment (student_id);
+
+
+ALTER TABLE ensembles ADD CONSTRAINT FK_ensembles_0 FOREIGN KEY (student_id) REFERENCES student (id);
+ALTER TABLE ensembles ADD CONSTRAINT FK_ensembles_1 FOREIGN KEY (instructor_id) REFERENCES instructor (id);
+
+
+ALTER TABLE genre ADD CONSTRAINT FK_genre_0 FOREIGN KEY (ensembles_id) REFERENCES ensembles (id);
+
+
+ALTER TABLE instrument ADD CONSTRAINT FK_instrument_0 FOREIGN KEY (inventory_id) REFERENCES inventory (id);
+
+
+ALTER TABLE instrument_ensembles ADD CONSTRAINT FK_instrument_ensembles_0 FOREIGN KEY (instrument_id) REFERENCES instrument (id);
+ALTER TABLE instrument_ensembles ADD CONSTRAINT FK_instrument_ensembles_1 FOREIGN KEY (ensembles_id) REFERENCES ensembles (id);
+
+
+ALTER TABLE instrument_rental ADD CONSTRAINT FK_instrument_rental_0 FOREIGN KEY (inventory_id) REFERENCES inventory (id);
+ALTER TABLE instrument_rental ADD CONSTRAINT FK_instrument_rental_1 FOREIGN KEY (instrument_id) REFERENCES instrument (id);
+ALTER TABLE instrument_rental ADD CONSTRAINT FK_instrument_rental_2 FOREIGN KEY (student_id) REFERENCES student (id);
+
+
+ALTER TABLE sibling_group ADD CONSTRAINT FK_sibling_group_0 FOREIGN KEY (student_id) REFERENCES student (id);
+
+
+ALTER TABLE stock_quantity ADD CONSTRAINT FK_stock_quantity_0 FOREIGN KEY (instrument_id) REFERENCES instrument (id);
+ALTER TABLE stock_quantity ADD CONSTRAINT FK_stock_quantity_1 FOREIGN KEY (inventory_id) REFERENCES inventory (id);
+
+
+ALTER TABLE student_instrument ADD CONSTRAINT FK_student_instrument_0 FOREIGN KEY (student_id) REFERENCES student (id);
+ALTER TABLE student_instrument ADD CONSTRAINT FK_student_instrument_1 FOREIGN KEY (instructor_id) REFERENCES instrument (id);
+
+
+ALTER TABLE type ADD CONSTRAINT FK_type_0 FOREIGN KEY (instrument_id) REFERENCES instrument (id);
+ALTER TABLE type ADD CONSTRAINT FK_type_1 FOREIGN KEY (inventory_id) REFERENCES inventory (id);
+
+
+ALTER TABLE brand ADD CONSTRAINT FK_brand_0 FOREIGN KEY (instrument_id) REFERENCES instrument (id);
+ALTER TABLE brand ADD CONSTRAINT FK_brand_1 FOREIGN KEY (inventory_id) REFERENCES inventory (id);
+
+
+ALTER TABLE group_lesson ADD CONSTRAINT FK_group_lesson_0 FOREIGN KEY (student_id) REFERENCES student (id);
+ALTER TABLE group_lesson ADD CONSTRAINT FK_group_lesson_1 FOREIGN KEY (instructor_id) REFERENCES instructor (id);
+ALTER TABLE group_lesson ADD CONSTRAINT FK_group_lesson_2 FOREIGN KEY (instrument_id) REFERENCES instrument (id);
+
+
+ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_0 FOREIGN KEY (id_student) REFERENCES student (id);
+ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_1 FOREIGN KEY (instructor_id) REFERENCES instructor (id);
+ALTER TABLE individual_lesson ADD CONSTRAINT FK_individual_lesson_2 FOREIGN KEY (instrument_id) REFERENCES instrument (id);
+
+
+ALTER TABLE instrument_group_lesson ADD CONSTRAINT FK_instrument_group_lesson_0 FOREIGN KEY (instrument_id) REFERENCES instrument (id);
+ALTER TABLE instrument_group_lesson ADD CONSTRAINT FK_instrument_group_lesson_1 FOREIGN KEY (groupt_lesson_id) REFERENCES group_lesson (id);
+
+
+ALTER TABLE pricing_scheme ADD CONSTRAINT FK_pricing_scheme_0 FOREIGN KEY (individual_lesson_id) REFERENCES individual_lesson (id);
+ALTER TABLE pricing_scheme ADD CONSTRAINT FK_pricing_scheme_1 FOREIGN KEY (group_lesson_id) REFERENCES group_lesson (id);
+ALTER TABLE pricing_scheme ADD CONSTRAINT FK_pricing_scheme_2 FOREIGN KEY (ensembles_id) REFERENCES ensembles (id);
+
+
