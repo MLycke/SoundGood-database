@@ -1,0 +1,14 @@
+-- Database: SoundgoodDB
+
+-- DROP DATABASE IF EXISTS "SoundgoodDB";
+
+CREATE DATABASE "SoundgoodDB"
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Swedish_Sweden.1252'
+    LC_CTYPE = 'Swedish_Sweden.1252'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
