@@ -1,0 +1,117 @@
+-- Instructors Data
+INSERT INTO instructor (instructor_id, person_number, name, address, specific_expertise)
+VALUES
+(1, '123456789012', 'Alice Martinez', '123 Maple Street, Springfield', 'Piano'),
+(2, '987654321098', 'John Smith', '456 Elm Street, Springfield', 'Guitar'),
+(3, '456123789012', 'Sophia Nguyen', '789 Oak Avenue, Springfield', 'Violin'),
+(4, '789456123098', 'Michael Brown', '101 Pine Drive, Springfield', 'Drums'),
+(5, '321654987321', 'Emily Johnson', '202 Willow Lane, Springfield', 'Flute');
+
+-- Instruments Data
+INSERT INTO instrument (instrument_id, stock_quantity, brand, type)
+VALUES
+(1, '10', 'Yamaha', 'Piano'),
+(2, '5', 'Fender', 'Guitar'),
+(3, '8', 'Stradivarius', 'Violin'),
+(4, '12', 'Pearl', 'Drums'),
+(5, '15', 'Yamaha', 'Flute');
+
+-- Students Data
+INSERT INTO student (student_id, person_number, name, address, sibling_group_id, skill_level)
+VALUES
+(1, '111222333444', 'Emma Davis', '321 Pine Road, Springfield', 'SG1', 'Intermediate'),
+(2, '555666777888', 'Liam Brown', '654 Cedar Lane, Springfield', 'SG2', 'Beginner'),
+(3, '999000111222', 'Olivia Wilson', '987 Birch Boulevard, Springfield', 'SG1', 'Advanced'),
+(4, '222333444555', 'Ava Johnson', '123 Maple Street, Springfield', 'SG3', 'Beginner'),
+(5, '333444555666', 'William Jones', '456 Elm Street, Springfield', 'SG3', 'Intermediate'),
+(6, '444555666777', 'Sophia Garcia', '789 Oak Avenue, Springfield', 'SG4', 'Advanced'),
+(7, '555666777888', 'James Martinez', '101 Pine Drive, Springfield', 'SG5', 'Beginner'),
+(8, '666777888999', 'Charlotte Anderson', '202 Willow Lane, Springfield', 'SG5', 'Intermediate'),
+(9, '777888999000', 'Amelia Thomas', '123 Maple Street, Springfield', 'SG6', 'Advanced'),
+(10, '888999000111', 'Benjamin Lee', '654 Cedar Lane, Springfield', 'SG6', 'Beginner'),
+(11, '999111222333', 'Lucas Harris', '987 Birch Boulevard, Springfield', 'SG7', 'Intermediate'),
+(12, '111333444555', 'Ella Clark', '789 Oak Avenue, Springfield', 'SG7', 'Advanced'),
+(13, '222444555666', 'Mia Walker', '101 Pine Drive, Springfield', 'SG8', 'Beginner'),
+(14, '333555666777', 'Ethan Young', '202 Willow Lane, Springfield', 'SG8', 'Intermediate'),
+(15, '444666777888', 'Harper King', '123 Maple Street, Springfield', 'SG9', 'Advanced'),
+(16, '555777888999', 'Jackson Wright', '456 Elm Street, Springfield', 'SG9', 'Beginner'),
+(17, '666888999000', 'Avery Lopez', '789 Oak Avenue, Springfield', 'SG10', 'Intermediate'),
+(18, '777999000111', 'Evelyn Hill', '101 Pine Drive, Springfield', 'SG10', 'Advanced'),
+(19, '888111222333', 'Mason Scott', '202 Willow Lane, Springfield', 'SG11', 'Beginner'),
+(20, '999222333444', 'Scarlett Green', '123 Maple Street, Springfield', 'SG11', 'Intermediate'),
+(21, '111444555666', 'Henry Adams', '456 Elm Street, Springfield', 'SG12', 'Advanced'),
+(22, '222555666777', 'Grace Turner', '789 Oak Avenue, Springfield', 'SG12', 'Beginner'),
+(23, '333666777888', 'Julian Parker', '101 Pine Drive, Springfield', 'SG13', 'Intermediate'),
+(24, '444777888999', 'Isabella Cooper', '202 Willow Lane, Springfield', 'SG13', 'Advanced');
+
+-- Available Times Data
+INSERT INTO available_times (available_instructor_booking_times, instructor_id)
+VALUES
+('Monday 10:00-12:00', default),
+('Wednesday 14:00-16:00', default),
+('Friday 09:00-11:00', default),
+('Tuesday 15:00-17:00', default),
+('Thursday 10:00-12:00', default);
+
+-- Contact Details Data
+INSERT INTO contact_details (instructor_id, student_id, instructor_contact_details, student_contact_details)
+VALUES
+(default, default, 'alice.martinez@musicacademy.com', 'emma.davis@familyemail.com'),
+(default, default, 'john.smith@musicacademy.com', 'liam.brown@familyemail.com'),
+(default, default, 'sophia.nguyen@musicacademy.com', 'olivia.wilson@familyemail.com'),
+(default, default, 'michael.brown@musicacademy.com', 'ava.johnson@familyemail.com'),
+(default, default, 'emily.johnson@musicacademy.com', 'william.jones@familyemail.com');
+
+-- Contact Person Details Data
+INSERT INTO contact_person_details (contact_person_details, student_id)
+VALUES
+('Emma’s Guardian: Sarah Davis, +1234567890', default),
+('Liam’s Guardian: Peter Brown, +9876543210', default),
+('Olivia’s Guardian: Mary Wilson, +4567891230', default),
+('Ava’s Guardian: Carol Johnson, +3216549870', default),
+('William’s Guardian: David Jones, +6543210987', default);
+
+-- Ensembles Data
+INSERT INTO ensembles (lesson_id, status, min_students, max_students, student_id, instructor_id)
+VALUES
+(1, 'Scheduled', '3', '10', default, default),
+(2, 'Ongoing', '2', '5', default, default),
+(3, 'Completed', '4', '12', default, default),
+(4, 'Scheduled', '3', '8', default, default),
+(5, 'Ongoing', '5', '15', default, default);
+
+-- Genre Data
+INSERT INTO genre (ensembles_genre, ensembles_id)
+VALUES
+('Classical', default),
+('Rock', default),
+('Jazz', default),
+('Pop', default),
+('Blues', default);
+
+-- Group Lesson Data
+INSERT INTO group_lesson (lesson_id, status, min_students, max_students, student_id, instructor_id, skill_level)
+VALUES
+(1, 'Scheduled', '3', '8', default, default, 'Intermediate'),
+(2, 'Ongoing', '2', '6', default, default, 'Beginner'),
+(3, 'Completed', '4', '10', default, default, 'Advanced'),
+(4, 'Scheduled', '5', '12', default, default, 'Beginner'),
+(5, 'Ongoing', '3', '9', default, default, 'Intermediate');
+
+-- Individual Lesson Data
+INSERT INTO individual_lesson (lesson_id, status, min_students, max_students, student_id, instructor_id, instrument_id, skill_level)
+VALUES
+(1, 'Scheduled', '1', '1', default, default, 'Intermediate'),
+(2, 'Ongoing', '1', '1', default, default, 'Beginner'),
+(3, 'Completed', '1', '1', default, default, 'Advanced'),
+(4, 'Scheduled', '1', '1', default, default, 'Beginner'),
+(5, 'Ongoing', '1', '1', default, default, 'Intermediate');
+
+-- Instrument Rental Data
+INSERT INTO instrument_rental (rental_id, rental_start_date, rental_end_date, instrument_id, student_id)
+VALUES
+(1, '20240101', '20240630', default, default),
+(2, '20240115', '20240515', default, default),
+(3, '20240201', '20240701', default, default),
+(4, '20240301', '20240801', default, default),
+(5, '20240401', '20240901', default, default);
