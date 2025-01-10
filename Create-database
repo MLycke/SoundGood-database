@@ -1,8 +1,8 @@
--- Database: SoundgoodDB
+-- Database: Soundgood
 
--- DROP DATABASE IF EXISTS "SoundgoodDB";
+-- DROP DATABASE IF EXISTS "Soundgood";
 
-CREATE DATABASE "SoundgoodDB"
+CREATE DATABASE "Soundgood"
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
