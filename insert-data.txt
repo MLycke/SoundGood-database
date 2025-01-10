@@ -19,30 +19,30 @@ VALUES
 -- Students Data
 INSERT INTO student (student_id, person_number, name, address, sibling_group_id, skill_level)
 VALUES
-(1, '111222333444', 'Emma Davis', '321 Pine Road, Springfield', 'SG1', 'Intermediate'),
-(2, '555666777888', 'Liam Brown', '654 Cedar Lane, Springfield', 'SG2', 'Beginner'),
-(3, '999000111222', 'Olivia Wilson', '987 Birch Boulevard, Springfield', 'SG1', 'Advanced'),
-(4, '222333444555', 'Ava Johnson', '123 Maple Street, Springfield', 'SG3', 'Beginner'),
-(5, '333444555666', 'William Jones', '456 Elm Street, Springfield', 'SG3', 'Intermediate'),
-(6, '444555666777', 'Sophia Garcia', '789 Oak Avenue, Springfield', 'SG4', 'Advanced'),
-(7, '555666777888', 'James Martinez', '101 Pine Drive, Springfield', 'SG5', 'Beginner'),
-(8, '666777888999', 'Charlotte Anderson', '202 Willow Lane, Springfield', 'SG5', 'Intermediate'),
-(9, '777888999000', 'Amelia Thomas', '123 Maple Street, Springfield', 'SG6', 'Advanced'),
-(10, '888999000111', 'Benjamin Lee', '654 Cedar Lane, Springfield', 'SG6', 'Beginner'),
-(11, '999111222333', 'Lucas Harris', '987 Birch Boulevard, Springfield', 'SG7', 'Intermediate'),
-(12, '111333444555', 'Ella Clark', '789 Oak Avenue, Springfield', 'SG7', 'Advanced'),
-(13, '222444555666', 'Mia Walker', '101 Pine Drive, Springfield', 'SG8', 'Beginner'),
-(14, '333555666777', 'Ethan Young', '202 Willow Lane, Springfield', 'SG8', 'Intermediate'),
-(15, '444666777888', 'Harper King', '123 Maple Street, Springfield', 'SG9', 'Advanced'),
-(16, '555777888999', 'Jackson Wright', '456 Elm Street, Springfield', 'SG9', 'Beginner'),
-(17, '666888999000', 'Avery Lopez', '789 Oak Avenue, Springfield', 'SG10', 'Intermediate'),
-(18, '777999000111', 'Evelyn Hill', '101 Pine Drive, Springfield', 'SG10', 'Advanced'),
-(19, '888111222333', 'Mason Scott', '202 Willow Lane, Springfield', 'SG11', 'Beginner'),
-(20, '999222333444', 'Scarlett Green', '123 Maple Street, Springfield', 'SG11', 'Intermediate'),
-(21, '111444555666', 'Henry Adams', '456 Elm Street, Springfield', 'SG12', 'Advanced'),
-(22, '222555666777', 'Grace Turner', '789 Oak Avenue, Springfield', 'SG12', 'Beginner'),
-(23, '333666777888', 'Julian Parker', '101 Pine Drive, Springfield', 'SG13', 'Intermediate'),
-(24, '444777888999', 'Isabella Cooper', '202 Willow Lane, Springfield', 'SG13', 'Advanced');
+(1, '111222333444', 'Emma Davis', '321 Pine Road, Springfield', default, 'Intermediate'),
+(2, '555666777888', 'Liam Brown', '654 Cedar Lane, Springfield', default, 'Beginner'),
+(3, '999000111222', 'Olivia Wilson', '987 Birch Boulevard, Springfield', default, 'Advanced'),
+(4, '222333444555', 'Ava Johnson', '123 Maple Street, Springfield', default, 'Beginner'),
+(5, '333444555666', 'William Jones', '456 Elm Street, Springfield', default, 'Intermediate'),
+(6, '444555666777', 'Sophia Garcia', '789 Oak Avenue, Springfield', default, 'Advanced'),
+(7, '555666777888', 'James Martinez', '101 Pine Drive, Springfield', default, 'Beginner'),
+(8, '666777888999', 'Charlotte Anderson', '202 Willow Lane, Springfield', default, 'Intermediate'),
+(9, '777888999000', 'Amelia Thomas', '123 Maple Street, Springfield', default, 'Advanced'),
+(10, '888999000111', 'Benjamin Lee', '654 Cedar Lane, Springfield', default, 'Beginner'),
+(11, '999111222333', 'Lucas Harris', '987 Birch Boulevard, Springfield', default, 'Intermediate'),
+(12, '111333444555', 'Ella Clark', '789 Oak Avenue, Springfield', default, 'Advanced'),
+(13, '222444555666', 'Mia Walker', '101 Pine Drive, Springfield', default, 'Beginner'),
+(14, '333555666777', 'Ethan Young', '202 Willow Lane, Springfield', default, 'Intermediate'),
+(15, '444666777888', 'Harper King', '123 Maple Street, Springfield', default, 'Advanced'),
+(16, '555777888999', 'Jackson Wright', '456 Elm Street, Springfield', default, 'Beginner'),
+(17, '666888999000', 'Avery Lopez', '789 Oak Avenue, Springfield', default, 'Intermediate'),
+(18, '777999000111', 'Evelyn Hill', '101 Pine Drive, Springfield', default, 'Advanced'),
+(19, '888111222333', 'Mason Scott', '202 Willow Lane, Springfield', default, 'Beginner'),
+(20, '999222333444', 'Scarlett Green', '123 Maple Street, Springfield', default, 'Intermediate'),
+(21, '111444555666', 'Henry Adams', '456 Elm Street, Springfield', default, 'Advanced'),
+(22, '222555666777', 'Grace Turner', '789 Oak Avenue, Springfield', default, 'Beginner'),
+(23, '333666777888', 'Julian Parker', '101 Pine Drive, Springfield', default, 'Intermediate'),
+(24, '444777888999', 'Isabella Cooper', '202 Willow Lane, Springfield', default, 'Advanced');
 
 -- Available Times Data
 INSERT INTO available_times (available_instructor_booking_times, instructor_id)
@@ -101,11 +101,11 @@ VALUES
 -- Individual Lesson Data
 INSERT INTO individual_lesson (lesson_id, status, min_students, max_students, student_id, instructor_id, instrument_id, skill_level)
 VALUES
-(1, 'Scheduled', '1', '1', default, default, 'Intermediate'),
-(2, 'Ongoing', '1', '1', default, default, 'Beginner'),
-(3, 'Completed', '1', '1', default, default, 'Advanced'),
-(4, 'Scheduled', '1', '1', default, default, 'Beginner'),
-(5, 'Ongoing', '1', '1', default, default, 'Intermediate');
+(1, 'Scheduled', '1', '1', default, default, default, 'Intermediate'),
+(2, 'Ongoing', '1', '1', default, default, default, 'Beginner'),
+(3, 'Completed', '1', '1', default, default, default, 'Advanced'),
+(4, 'Scheduled', '1', '1', default, default, default,'Beginner'),
+(5, 'Ongoing', '1', '1', default, default, default, 'Intermediate');
 
 -- Instrument Rental Data
 INSERT INTO instrument_rental (rental_id, rental_start_date, rental_end_date, instrument_id, student_id)
@@ -115,3 +115,61 @@ VALUES
 (3, '20240201', '20240701', default, default),
 (4, '20240301', '20240801', default, default),
 (5, '20240401', '20240901', default, default);
+
+-- Pricing Scheme
+INSERT INTO pricing_scheme (individual_lesson_id, group_lesson_id, ensembles_id, skill_level, lesson_type, student_payment, instructor_payment, rental_fee)
+VALUES
+(default, default, default, 'Beginner', 'ensemble', 180, 100, 50),
+(default, default, default, 'Intermediate', 'ensemble', 200, 130, 40),
+(default, default, default, 'Advanced', 'ensemble', 220, 150, 40),
+(default, default, default, 'Beginner', 'group', 180, 100, 50),
+(default, default, default, 'Intermediate', 'group', 200, 130, 40),
+(default, default, default, 'Advanced', 'group', 220, 150, 40),
+(default, default, default, 'Beginner', 'individual', 200, 120, 50),
+(default, default, default, 'Intermediate', 'individual', 220, 150, 40),
+(default, default, default, 'Advanced', 'individual', 240, 170, 40);
+
+-- Student Group Lesson
+INSERT INTO student_group_lesson (student_id, group_lesson_id)
+VALUES
+(default, default),
+(default, default),
+(default, default),
+(default, default),
+(default, default);
+
+-- Student ensembles
+INSERT INTO student_ensembles (ensembles_id, student_id)
+VALUES
+(default, default),
+(default, default),
+(default, default),
+(default, default),
+(default, default);
+
+-- Sibling Group
+INSERT INTO sibling_group (sibling_group_id, discount_percentage, student_id)
+VALUES
+(1, '20%', default),
+(2, '20%', default),
+(3, '20%', default),
+(4, '20%', default),
+(5, '20%', default);
+
+-- Instrument Group Lesson
+INSERT INTO instrument_group_lesson (instrument_id, groupt_lesson_id)
+VALUES
+(default, default),
+(default, default),
+(default, default),
+(default, default),
+(default, default);
+
+-- Instrument Ensemble
+INSERT INTO instrument_ensemble (instrument_id, ensembles_id)
+VALUES
+(default, default),
+(default, default),
+(default, default),
+(default, default),
+(default, default);
