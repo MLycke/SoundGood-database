@@ -1,4 +1,3 @@
-
 -- Instructors Data
 INSERT INTO instructor (instructor_id, person_number, name, address, specific_expertise)
 VALUES
